@@ -1,0 +1,23 @@
+{
+  "name": "Pinni Counter",
+  "short_name": "Pinni Counter",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#198754",
+  "description": "ਹਿਸਾਬ ਕਿਤਾਬ ਐਪ",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
