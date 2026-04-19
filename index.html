@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pinni Counter</title>
-    <!-- ਅਸਲੀ Manifest ਫਾਈਲ ਦਾ ਲਿੰਕ -->
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon.png">
     <meta id="meta-theme-color" name="theme-color" content="#198754">
@@ -63,9 +62,8 @@
             position: relative;
         }
 
-        /* Install Button Styling */
         #installBtn {
-            display: none; /* Initially hidden */
+            display: none; 
             background-color: #0d6efd;
             color: white;
             border: none;
@@ -188,12 +186,23 @@
             box-shadow: 0 0 0 3px var(--readonly-bg);
         }
 
+        /* Readonly Fields */
         input[readonly]:not(.result-field) {
             background-color: var(--readonly-bg) !important;
             border-color: var(--readonly-border) !important;
             color: var(--readonly-text) !important;
             cursor: not-allowed;
             font-weight: bold;
+        }
+        
+        /* ਸੈਕਸ਼ਨ 3 ਦੇ ਸਾਧਾਰਨ ਖਾਨੇ (ਚਿੱਟੇ ਰਹਿਣਗੇ) */
+        .white-bg {
+            background-color: #ffffff !important;
+        }
+        .white-bg[readonly] {
+             background-color: #f8f9fa !important; /* ਥੋੜ੍ਹਾ ਜਿਹਾ ਸਲੇਟੀ ਤਾਂ ਕਿ ਪਤਾ ਲੱਗੇ ਕਿ ਇਹ ਆਪਣੇ ਆਪ ਭਰਦਾ ਹੈ */
+             color: var(--text-main) !important;
+             border-color: var(--border-color) !important;
         }
 
         input.result-field {
@@ -356,10 +365,11 @@
             <div class="form-group"><label>9. ਕੁੱਲ ਖਰਚਾ</label><input type="number" id="box9" class="readonly" readonly></div>
         </section>
 
-        <section style="background: var(--readonly-bg); border-color: var(--readonly-border);">
+        <!-- Changed background class here -->
+        <section class="white-bg" style="border-color: var(--border-color);">
             <h2 style="border-bottom: none; margin-bottom: 5px;">3. ਬਕਾਇਆ</h2>
-            <div class="form-group"><label>10. ਪੱਕੇ ਰਜਿਸਟਰ ਦਾ ਬਕਾਇਆ</label><input type="number" id="box10" placeholder="ਰਜਿਸਟਰ ਅਨੁਸਾਰ ਭਰੋ..." oninput="calculateSiropa()"></div>
-            <div class="form-group"><label>11. ਖਰਚ ਵਿੱਚੋਂ ਬਕਾਇਆ ਘਟਾਇਆ</label><input type="number" id="box11" class="readonly" readonly></div>
+            <div class="form-group"><label>10. ਪੱਕੇ ਰਜਿਸਟਰ ਦਾ ਬਕਾਇਆ</label><input type="number" id="box10" class="white-bg" placeholder="ਰਜਿਸਟਰ ਅਨੁਸਾਰ ਭਰੋ..." oninput="calculateSiropa()"></div>
+            <div class="form-group"><label>11. ਖਰਚ ਵਿੱਚੋਂ ਬਕਾਇਆ ਘਟਾਇਆ</label><input type="number" id="box11" class="white-bg readonly" readonly></div>
             <div class="form-group"><label style="font-size: 1.1rem;">12. ਫਾਈਨਲ ਰਿਜ਼ਲਟ</label><input type="number" id="box12" class="result-field" readonly></div>
         </section>
         <button class="reset-btn" onclick="resetSiropa()">ਡਾਟਾ ਰੀਸੈੱਟ ਕਰੋ</button>
@@ -507,11 +517,8 @@
     /* PWA INSTALLATION LOGIC */
     let deferredPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent the mini-infobar from appearing on mobile
         e.preventDefault();
-        // Stash the event so it can be triggered later.
         deferredPrompt = e;
-        // Update UI notify the user they can install the PWA
         document.getElementById('installBtn').style.display = 'block';
     });
 
@@ -538,4 +545,5 @@
 
 </body>
 </html>
+
 
